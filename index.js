@@ -82,9 +82,9 @@ contributionsCard.innerHTML = `${totalContributions.toLocaleString()}`;
 
 // grab the amount raised card, then use reduce() to find the total amount raised
 const raisedCard = document.getElementById("total-raised");
-const totalRaised = GAMES_JSON.reduce((acc, game) => acc + game.pledged, 0);
+const total = GAMES_JSON.reduce((acc, game) => acc + game.pledged, 0);
 // set inner HTML using template literal
-raisedCard.innerHTML = `$${totalRaised.toLocaleString()}`;
+raisedCard.innerHTML = `$${total.toLocaleString()}`;
 
 
 // grab number of games card and set its inner HTML
@@ -156,7 +156,7 @@ const numUnfunded = GAMES_JSON.filter(game => game.pledged < game.goal).length;
 
 
 // create a string that explains the number of unfunded games using the ternary operator
-totalRaised = GAMES_JSON.reduce((sum, game) => sum + game.pledged, 0).toLocaleString(); 
+const totalRaised = GAMES_JSON.reduce((sum, game) => sum + game.pledged, 0).toLocaleString(); 
 const numGames = GAMES_JSON.length;
 
 const unfundedString = `
@@ -170,7 +170,8 @@ const unfundedString = `
 const newParagraph = document.createElement("p");
 newParagraph.innerHTML = unfundedString;
 descriptionContainer.appendChild(newParagraph);
-
+console.log(descriptionContainer);  // Should log the container element
+console.log(unfundedString); 
 /************************************************************************************
  * Challenge 7: Select & display the top 2 games
  * Skills used: spread operator, destructuring, template literals, sort 
